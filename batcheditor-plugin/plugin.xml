@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          KEYWORDS                                    -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <extension point="org.eclipse.ui.keywords">
+     <keyword
+   		id="batcheditor.preferences.keyword.batch"
+   		label="batch">
+     </keyword>
+      <keyword
+   		id="batcheditor.preferences.keyword.color"
+   		label="color">
+     </keyword>
+     <keyword
+   		id="batcheditor.preferences.keyword.editor"
+   		label="editor">
+     </keyword>
+     <keyword
+   		id="batcheditor.preferences.keyword.validation"
+   		label="validation">
+     </keyword>
+    
+   </extension>
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          EDITOR                                      -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+      		name="Batch Editor"
+            extensions="bat"
+            icon="icons/batch-editor.png"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="de.jcup.batcheditor.BatchEditor"
+            id="batcheditor.editors.BatchEditor">
+      </editor>
+   </extension>
+   
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          MARKER                          			 -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --> 
+   <extension 
+   		id="de.jcup.batcheditor.script.problem"
+    	point="org.eclipse.core.resources.markers"
+    	name="Batcheditor script problem">
+        <super type="org.eclipse.core.resources.problemmarker"/>
+        <super type="org.eclipse.core.resources.textmarker"/>
+        <persistent value="false"/>
+    </extension>
+   
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          CONTEXT                                     -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <extension point="org.eclipse.ui.contexts">
+	  <context
+	        name="Batch context"
+	        description="Editing batch files"
+	        parentId="org.eclipse.ui.textEditorScope"
+	        id="org.batcheditor.editors.BatchEditor.context">
+	        
+	  </context>
+   </extension>
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          COMMANDS                                    -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->^
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="Batch editor"
+            id="batcheditor.commands.category"
+            name="Batch editor">
+      </category>
+   </extension>
+   
+   <extension point="org.eclipse.ui.commands">
+   	   <command
+            name="Quick outline"
+            description="Show quick outline dialog"
+            categoryId="batcheditor.commands.category"
+            id="batcheditor.editor.commands.quickoutline">
+      </command>
+      <command
+            name="Toggle comment"
+            description="Toggle comment in selected line(s)"
+            categoryId="batcheditor.commands.category"
+            id="batcheditor.editor.commands.source.toggleComment">
+      </command>
+      <command
+            name="Goto matching bracket"
+            description="Goto matching bracket inside gradle document"
+            categoryId="batcheditor.commands.category"
+            id="batcheditor.editor.commands.gotomatchingbracket">
+      </command>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+	 <handler
+            commandId="batcheditor.editor.commands.quickoutline"
+            class="de.jcup.batcheditor.handlers.OpenQuickOutlineHandler">
+      </handler>
+      <handler
+            commandId="batcheditor.editor.commands.source.toggleComment"
+            class="de.jcup.batcheditor.handlers.ToggleCommentHandler">
+      </handler>
+       <handler
+            commandId="batcheditor.editor.commands.gotomatchingbracket"
+            class="de.jcup.batcheditor.handlers.GotoMatchingBracketHandler">
+      </handler>
+    </extension> 
+    
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          KEY BINDING                                 -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <extension point="org.eclipse.ui.bindings">
+   		<key
+            sequence="M1+O"
+            contextId="org.batcheditor.editors.BatchEditor.context"
+            commandId="batcheditor.editor.commands.quickoutline"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">	  
+		</key>
+		<key
+            sequence="M1+7"
+            contextId="org.batcheditor.editors.BatchEditor.context"
+            commandId="batcheditor.editor.commands.source.toggleComment"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">	  
+		</key>
+		<key
+            sequence="M1+M2+P"
+            contextId="org.batcheditor.editors.BatchEditor.context"
+            commandId="batcheditor.editor.commands.gotomatchingbracket"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">	  
+		</key>
+    </extension> 
+    
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          MENU                                 -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.batcheditor.editors.BatchEditor.context?after=additions">
+         <command
+               commandId="batcheditor.editor.commands.quickoutline"
+               >
+         </command>
+      </menuContribution>
+      
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=edit">
+            
+         <menu
+               id="batcheditor.editor.menu.sourceMenu"
+               label="Source"
+               mnemonic="S"
+               >
+               <visibleWhen checkEnabled="true">
+                     <with variable="activeEditor">
+                     	<instanceof
+                            value="de.jcup.batcheditor.BatchEditor"/>
+                     </with>
+               </visibleWhen>
+            <command commandId="batcheditor.editor.commands.source.toggleComment">
+            </command>
+         </menu>
+      </menuContribution>
+      
+      </extension> 
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          PREFERENCES                                 -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <extension
+      point = "org.eclipse.ui.preferencePages">
+      <page
+         id="batcheditor.eclipse.gradleeditor.preferences.BatchEditorEditorPreferencePage"
+         class="de.jcup.batcheditor.preferences.BatchEditorPreferencePage"
+         name="Batch Editor"
+         >
+         <keywordReference
+               id="batcheditor.preferences.keyword.batch">
+         </keywordReference>
+          <keywordReference
+               id="batcheditor.preferences.keyword.editor">
+         </keywordReference>
+      </page>
+      <page
+         id="batcheditor.eclipse.gradleeditor.preferences.BatchEditorEditorSyntaxColorPreferencePage"
+         class="de.jcup.batcheditor.preferences.BatchEditorSyntaxColorPreferencePage"
+         name="Syntax coloring"
+         category="batcheditor.eclipse.gradleeditor.preferences.BatchEditorEditorPreferencePage">
+         <keywordReference
+               id="batcheditor.preferences.keyword.batch">
+         </keywordReference>
+          <keywordReference
+               id="batcheditor.preferences.keyword.color">
+         </keywordReference>
+      </page>
+      <page
+         id="batcheditor.eclipse.gradleeditor.preferences.BatchEditorValidationPreferencePage"
+         class="de.jcup.batcheditor.preferences.BatchEditorValidationPreferencePage"
+         name="Validation"
+         category="batcheditor.eclipse.gradleeditor.preferences.BatchEditorEditorPreferencePage">
+         <keywordReference
+               id="batcheditor.preferences.keyword.validation">
+         </keywordReference>
+      </page>
+    </extension>
+    <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="de.jcup.batcheditor.preferences.BatchEditorPreferenceInitializer">
+      </initializer>
+   </extension>
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          MARKER                          			 -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --> 
+   <extension 
+   		id="de.jcup.batcheditor.parse.error"
+    	point="org.eclipse.core.resources.markers"
+    	name="Batch editor parse error">
+        <super type="org.eclipse.core.resources.problemmarker"/>
+        <super type="org.eclipse.core.resources.textmarker"/>
+        <persistent value="true"/>
+    </extension>
+    
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                          HELP                                         -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml">
+      </toc>
+      <toc
+            file="EditorToc.xml"
+            primary="true">
+      </toc>
+   </extension>
+   
+</plugin>

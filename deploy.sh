@@ -1,4 +1,4 @@
-#!/bin/batch
+#!/bin/bash
 BINTRAY_USER=$1
 BINTRAY_API_KEY=$2
 

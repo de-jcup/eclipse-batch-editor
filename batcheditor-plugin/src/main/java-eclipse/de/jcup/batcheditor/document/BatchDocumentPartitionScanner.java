@@ -34,7 +34,7 @@ import de.jcup.batcheditor.document.keywords.DocumentKeyWord;
 public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 
 	private OnlyLettersKeyWordDetector onlyLettersWordDetector = new OnlyLettersKeyWordDetector();
-	private VariableDefKeyWordDetector variableDefKeyWordDetector = new VariableDefKeyWordDetector();
+//	private VariableDefKeyWordDetector variableDefKeyWordDetector = new VariableDefKeyWordDetector();
 
 	public BatchDocumentPartitionScanner() {
 
@@ -60,8 +60,11 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 
 		buildWordRules(rules, batchBuildIn, BatchBuildInKeywords.values());
 		buildWordRules(rules, batchExternalCommands, BatchExternalKeyWords.values());
+		
+		buildWordRules(rules, knownVariables, BatchSpecialVariableKeyWords.values());
 
-		buildVarDefRules(rules, knownVariables, BatchSpecialVariableKeyWords.values());
+		/* TODO ATR: 24.11.2017: remove the next linecomplete or support variable setup like in bash editor*/
+//		buildVarDefRules(rules, knownVariables, BatchSpecialVariableKeyWords.values());
 
 		setPredicateRules(rules.toArray(new IPredicateRule[rules.size()]));
 	}
@@ -83,12 +86,12 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 		}
 	}
 
-	private void buildVarDefRules(List<IPredicateRule> rules, IToken token, DocumentKeyWord[] values) {
-		for (DocumentKeyWord keyWord : values) {
-			rules.add(new VariableDefKeyWordPatternRule(variableDefKeyWordDetector, createWordStart(keyWord), token,
-					keyWord.isBreakingOnEof()));
-		}
-	}
+//	private void buildVarDefRules(List<IPredicateRule> rules, IToken token, DocumentKeyWord[] values) {
+//		for (DocumentKeyWord keyWord : values) {
+//			rules.add(new VariableDefKeyWordPatternRule(variableDefKeyWordDetector, createWordStart(keyWord), token,
+//					keyWord.isBreakingOnEof()));
+//		}
+//	}
 
 	private String createWordStart(DocumentKeyWord keyWord) {
 		return keyWord.getText();

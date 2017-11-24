@@ -227,7 +227,7 @@ public class BatchEditorPreferencePage extends FieldEditorPreferencePage impleme
 		
 		
 		codeAssistWithBatchKeywords = new BooleanFieldEditor(P_CODE_ASSIST_ADD_KEYWORDS.getId(),
-				"Batch and GNU keywords", codeAssistGroup);
+				"Batch keywords and external commands", codeAssistGroup);
 		codeAssistWithBatchKeywords.getDescriptionControl(codeAssistGroup)
 		.setToolTipText("When enabled the standard keywords supported by batch editor are always automatically available as code proposals");
 		addField(codeAssistWithBatchKeywords);

@@ -20,14 +20,11 @@ package de.jcup.batcheditor.preferences;
  */
 public enum BatchEditorSyntaxColorPreferenceConstants implements PreferenceIdentifiable, PreferenceLabeled{
 	COLOR_NORMAL_TEXT("colorNormalText","Normal text color"),
-	COLOR_BATCH_KEYWORD("colorBatchKeywords", "Batch keywords"),
-	COLOR_NORMAL_STRING("colorSingleStrings", "Single quoted strings"),
+	COLOR_BATCH_INTERNAL_KEYWORD("colorBatchKeywords", "Batch keywords"),
 	COLOR_GSTRING("colorDoubleStrings", "Double quoted strings"),
-	COLOR_BSTRING("colorBackTickStrings", "Backtick strings"),
 	COLOR_COMMENT("colorComments", "Comment"),
-	COLOR_INCLUDE_KEYWORD("colorIncludeKeywords","Includes"),
-	COLOR_BATCH_COMMAND("colorCommands","Commands"),
-	COLOR_KNOWN_VARIABLES("colorKnownVariables","Known variables"),
+	COLOR_EXTERNAL_COMMAND("colorCommands","External commands"),
+	COLOR_KNOWN_VARIABLES("colorKnownVariables","Variables"),
 	COLOR_PARAMETERS("colorParameters","Parameters"),
 	
 	;

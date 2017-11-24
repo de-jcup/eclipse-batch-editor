@@ -150,16 +150,13 @@ public class BatchSourceViewerConfiguration extends TextSourceViewerConfiguratio
 
 		addDefaultPresentation(reconciler);
 
-		addPresentation(reconciler, BATCH_KEYWORD.getId(), getPreferences().getColor(COLOR_BATCH_KEYWORD),SWT.BOLD);
+		addPresentation(reconciler, BATCH_KEYWORD.getId(), getPreferences().getColor(COLOR_BATCH_INTERNAL_KEYWORD),SWT.BOLD);
 
-		// Groovy provides different strings: simple and GStrings, so we use separate colors:
-		addPresentation(reconciler, SINGLE_STRING.getId(), getPreferences().getColor(COLOR_NORMAL_STRING),SWT.NONE);
 		addPresentation(reconciler, DOUBLE_STRING.getId(), getPreferences().getColor(COLOR_GSTRING),SWT.NONE);
-		addPresentation(reconciler, BACKTICK_STRING.getId(), getPreferences().getColor(COLOR_BSTRING),SWT.NONE);
 		
 		addPresentation(reconciler, COMMENT.getId(), getPreferences().getColor(COLOR_COMMENT),SWT.NONE);
 		addPresentation(reconciler, PARAMETER.getId(), getPreferences().getColor(COLOR_PARAMETERS),SWT.NONE);
-		addPresentation(reconciler, BATCH_COMMAND.getId(), getPreferences().getColor(COLOR_BATCH_COMMAND),SWT.BOLD|SWT.NONE);
+		addPresentation(reconciler, BATCH_COMMAND.getId(), getPreferences().getColor(COLOR_EXTERNAL_COMMAND),SWT.BOLD|SWT.NONE);
 		
 		
 		addPresentation(reconciler, VARIABLES.getId(), getPreferences().getColor(COLOR_KNOWN_VARIABLES),SWT.NONE);

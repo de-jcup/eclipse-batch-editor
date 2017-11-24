@@ -25,9 +25,6 @@ import de.jcup.batcheditor.preferences.BatchEditorPreferences;
 
 public class BatchEditorUtil {
 
-	private static UnpersistedMarkerHelper scriptProblemMarkerHelper = new UnpersistedMarkerHelper(
-			"de.jcup.batcheditor.script.problem");
-
 	public static BatchEditorPreferences getPreferences() {
 		return BatchEditorPreferences.getInstance();
 	}

@@ -63,13 +63,11 @@ public class BatchEditorSyntaxColorPreferencePage extends FieldEditorPreferenceP
 
 				/* editor colors */
 				changeColor(editorMap, COLOR_NORMAL_TEXT, BatchEditorColorConstants.GRAY_JAVA);
-				changeColor(editorMap, COLOR_BATCH_KEYWORD, BatchEditorColorConstants.MIDDLE_GREEN);
+				changeColor(editorMap, COLOR_BATCH_INTERNAL_KEYWORD, BatchEditorColorConstants.MIDDLE_GREEN);
 				
-				changeColor(editorMap, COLOR_NORMAL_STRING, BatchEditorColorConstants.MIDDLE_GRAY);
 				changeColor(editorMap, COLOR_GSTRING, BatchEditorColorConstants.MIDDLE_ORANGE);
 				changeColor(editorMap, COLOR_COMMENT, BatchEditorColorConstants.GREEN_JAVA);
-				changeColor(editorMap, COLOR_INCLUDE_KEYWORD, BatchEditorColorConstants.MIDDLE_BROWN);
-				changeColor(editorMap, COLOR_BATCH_COMMAND, BatchEditorColorConstants.TASK_CYAN);
+				changeColor(editorMap, COLOR_EXTERNAL_COMMAND, BatchEditorColorConstants.TASK_CYAN);
 				changeColor(editorMap, COLOR_KNOWN_VARIABLES, BatchEditorColorConstants.DARK_THEME_GRAY);
 				changeColor(editorMap, COLOR_PARAMETERS, BatchEditorColorConstants.BRIGHT_CYAN);
 				

@@ -59,17 +59,12 @@ public class BatchEditorPreferenceInitializer extends AbstractPreferenceInitiali
 		/* +++++++++++++++++ */
 		preferences.setDefaultColor(COLOR_NORMAL_TEXT, BLACK);
 
-		preferences.setDefaultColor(COLOR_BATCH_KEYWORD, KEYWORD_DEFAULT_PURPLE);
-		preferences.setDefaultColor(COLOR_NORMAL_STRING, STRING_DEFAULT_BLUE);
-		
+		preferences.setDefaultColor(COLOR_BATCH_INTERNAL_KEYWORD, KEYWORD_DEFAULT_PURPLE);
 		
 		preferences.setDefaultColor(COLOR_GSTRING, ROYALBLUE);
-		preferences.setDefaultColor(COLOR_BSTRING, CADET_BLUE);
 		preferences.setDefaultColor(COLOR_COMMENT, GREEN_JAVA);
 		
-		preferences.setDefaultColor(COLOR_INCLUDE_KEYWORD, LINK_DEFAULT_BLUE);
-		
-		preferences.setDefaultColor(COLOR_BATCH_COMMAND, TASK_DEFAULT_RED);
+		preferences.setDefaultColor(COLOR_EXTERNAL_COMMAND, TASK_DEFAULT_RED);
 		preferences.setDefaultColor(COLOR_KNOWN_VARIABLES, DARK_GRAY);
 		preferences.setDefaultColor(COLOR_PARAMETERS, DARK_BLUE);
 		

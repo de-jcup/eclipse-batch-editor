@@ -194,15 +194,6 @@
                id="batcheditor.preferences.keyword.color">
          </keywordReference>
       </page>
-      <page
-         id="batcheditor.eclipse.gradleeditor.preferences.BatchEditorValidationPreferencePage"
-         class="de.jcup.batcheditor.preferences.BatchEditorValidationPreferencePage"
-         name="Validation"
-         category="batcheditor.eclipse.gradleeditor.preferences.BatchEditorEditorPreferencePage">
-         <keywordReference
-               id="batcheditor.preferences.keyword.validation">
-         </keywordReference>
-      </page>
     </extension>
     <extension
          point="org.eclipse.core.runtime.preferences">

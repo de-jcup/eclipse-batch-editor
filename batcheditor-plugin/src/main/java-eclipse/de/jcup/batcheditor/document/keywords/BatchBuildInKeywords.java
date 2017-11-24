@@ -13,10 +13,10 @@
  * and limitations under the License.
  *
  */
- package de.jcup.batcheditor.document.keywords;
+package de.jcup.batcheditor.document.keywords;
 
+//see https://en.wikibooks.org/wiki/Windows_Batch_Scripting
 public enum BatchBuildInKeywords implements DocumentKeyWord {
-	/* @formatter:off*/
 	ASSOC("Associates an extension with a file type (FTYPE)."),
 
 	BREAK("Sets or clears extended CTRL+C checking."),
@@ -37,6 +37,10 @@ public enum BatchBuildInKeywords implements DocumentKeyWord {
 
 	DATE("Displays and sets the system date."),
 
+	// http://www.robvanderwoude.com/battech_defined.php
+	DEFINED("In Windows NT 4's CMD.EXE a new IF statement was introduced:\n"
+			+ "The DEFINED conditional [...] takes an environment variable name and returns true if the environment variable is defined.\n"
+			+ "This does require the Command Extensions to be enabled, so make sure you check this before using IF DEFINED."),
 	DEL,
 
 	ERASE("Deletes one or more files."),
@@ -44,6 +48,7 @@ public enum BatchBuildInKeywords implements DocumentKeyWord {
 	DIR("Displays a list of files and subdirectories in a directory."),
 
 	ECHO("Displays messages, or turns command echoing on or off."),
+	ECHO_DOT("echo.","Special variant for empty lines"),
 
 	ELSE("Performs conditional processing in batch programs when \"IF\" is not true."),
 
@@ -56,11 +61,13 @@ public enum BatchBuildInKeywords implements DocumentKeyWord {
 	FTYPE("Sets the file type command."),
 
 	/* was missing */ GOTO,
-	
+
 	IF("Performs conditional processing in batch programs."),
 
-	/* was missing */ NOT,
+	/* was missing */ IN,
 	
+	/* was missing */ NOT,
+
 	MD("Creates a directory."), MKDIR("Creates a directory."), MOVE("Moves a file to a new location"),
 
 	PATH("Sets or modifies the PATH environment"),
@@ -119,22 +126,23 @@ public enum BatchBuildInKeywords implements DocumentKeyWord {
 	BatchBuildInKeywords(String text, String description) {
 		this.text = text;
 		this.description = description;
-		if (this.description==null){
-			this.description="none";
+		if (this.description == null) {
+			this.description = "none";
 		}
 	}
 
 	@Override
 	public String getText() {
 		if (text == null) {
-			text= name().toLowerCase();
+			text = name().toLowerCase();
 		}
 		return text;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
+
 	@Override
 	public boolean isBreakingOnEof() {
 		return true;

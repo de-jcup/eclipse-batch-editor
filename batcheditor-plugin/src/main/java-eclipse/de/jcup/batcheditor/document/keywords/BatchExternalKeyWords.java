@@ -10,7 +10,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions
- * and limitations under the License.
+ * and limitations under the License. 
  *
  */
  package de.jcup.batcheditor.document.keywords;
@@ -22,7 +22,10 @@ public enum BatchExternalKeyWords implements DocumentKeyWord{
 	CONVERT, DEBUG, DISKCOMP, DISKCOPY, DISKPART, DOSKEY, DRIVERQUERY, EXPAND, FC, FIND, FINDSTR, FORFILES, FORMAT, 
 	FSUTIL, GPRESULT, GRAFTABL, HELP, ICACLS, IPCONFIG, LABEL, MAKECAB, MODE, MORE, NET, OPENFILES, PING, RECOVER, REG, 
 	REPLACE, ROBOCOPY, RUNDLL32, SC, SCHTASKS, SETX, SHUTDOWN, SORT, SUBST, SYSTEMINFO, TASKKILL, TASKLIST, TIMEOUT, 
-	TREE, WHERE, WMIC, XCOPY
+	TREE, WHERE, WMIC, XCOPY,
+	
+	/* additional windows commands not listed in wiki book:*/
+	REGEDIT,
 
 	;
 

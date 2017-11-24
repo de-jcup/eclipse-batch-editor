@@ -50,21 +50,16 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 
 		List<IPredicateRule> rules = new ArrayList<>();
 		rules.add(new BatchVariableRule(variables));
+		rules.add(new SingleLineRule("rem", "", comment, (char) -1, true));
 		rules.add(new SingleLineRule("REM", "", comment, (char) -1, true));
 		rules.add(new SingleLineRule("::", "", comment, (char) -1, true));
 
 		rules.add(new BatchStringRule("\"", "\"", doubleString));
-		// rules.add(new BatchStringRule("\'", "\'", simpleString));
 
 		rules.add(new CommandParameterRule(parameters));
 
 		buildWordRules(rules, batchBuildIn, BatchBuildInKeywords.values());
 		buildWordRules(rules, batchExternalCommands, BatchExternalKeyWords.values());
-
-		rules.add(new ExactWordPatternRule(onlyLettersWordDetector, "echo.", batchBuildIn, true));
-		rules.add(new ExactWordPatternRule(onlyLettersWordDetector, "ECHO.", batchBuildIn, true));
-		rules.add(new ExactWordPatternRule(onlyLettersWordDetector, "@echo", batchBuildIn, true));
-		rules.add(new ExactWordPatternRule(onlyLettersWordDetector, "@ECHO", batchBuildIn, true));
 
 		buildVarDefRules(rules, knownVariables, BatchSpecialVariableKeyWords.values());
 
@@ -73,10 +68,18 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 
 	private void buildWordRules(List<IPredicateRule> rules, IToken token, DocumentKeyWord[] values) {
 		for (DocumentKeyWord keyWord : values) {
-			rules.add(new ExactWordPatternRule(onlyLettersWordDetector, createWordStart(keyWord), token,
-					keyWord.isBreakingOnEof()));
-			rules.add(new ExactWordPatternRule(onlyLettersWordDetector, keyWord.getText().toUpperCase(), token,
-					keyWord.isBreakingOnEof()));
+			ExactWordPatternRule rule1 = new ExactWordPatternRule(onlyLettersWordDetector, createWordStart(keyWord), token,
+					keyWord.isBreakingOnEof());
+			rule1.setAllowedPrefix('@');
+			rule1.setAllowedPostfix(':');
+			rules.add(rule1);
+
+			ExactWordPatternRule rule2 = new ExactWordPatternRule(onlyLettersWordDetector, keyWord.getText().toUpperCase(), token,
+					keyWord.isBreakingOnEof());
+			rule2.setAllowedPrefix('@');
+			rule2.setAllowedPostfix(':');
+			rules.add(rule2);
+			
 		}
 	}
 

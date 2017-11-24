@@ -15,52 +15,34 @@
  */
 package de.jcup.batcheditor.document;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IPredicateRule;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
-
 /**
  * A special rule to scan batch variables
+ * 
  * @author Albert Tregnaghi
  *
  */
 public class BatchVariableRule implements IPredicateRule {
-	private enum State{
-		INITIAL,
-		NORMAL,
-		CURLY_OPENED,
-		GROUP_OPENED
-	}
-	
-	private class ScanContext{
-		State state;
-		int curlyBracesOpened = 0;
-		int groupOpened = 0;
-		int curlyBracesClosed;
-		int groupClosed;
-		
-		public boolean hasEndReached() {
-			if (state==State.CURLY_OPENED){
-				if (curlyBracesClosed==curlyBracesOpened){
-					return true;
-				}
-				return false;
-			}
-			if (state==State.GROUP_OPENED){
-				if (groupClosed==groupOpened){
-					return true;
-				}
-				return false;
-			}
-			return false;
-		}
-	}
-	private IToken token;
+	// https://stackoverflow.com/questions/20635695/what-are-valid-characters-for-windows-environment-variable-names-and-values
+	private final static char[] NOT_VALID_CHARACTERS = "%<>^&|=:".toCharArray();
 
+	private IToken token;
+	private Set<Character> notValidCharacterSet;
+	
 	public BatchVariableRule(IToken token) {
 		this.token = token;
+		notValidCharacterSet=new HashSet<>();
+		for (char c: NOT_VALID_CHARACTERS){
+			/* transform to collection with not primitive by auto boxing:*/
+			notValidCharacterSet.add(c);
+		}
 	}
 
 	@Override
@@ -80,82 +62,35 @@ public class BatchVariableRule implements IPredicateRule {
 			scanner.unread();
 			return Token.UNDEFINED;
 		}
-		ScanContext context = new ScanContext();
-		context.state=State.INITIAL;
-		
 		/* okay is a variable, so read until end reached */
 		do {
-			int read = scanner.read(); // use int for EOF detection, char makes problems here!
+			int read = scanner.read(); // use int for EOF detection, char makes
+										// problems here!
+			if (read == '%') {
+				/* special variant for terminating % */
+				break;
+			}
 			char c = (char) read;
-			if (ICharacterScanner.EOF == read || (!isWordPart(c, context))) {
+			if (ICharacterScanner.EOF == read || (!isWordPart(c))) {
 				scanner.unread();
 				break;
-			}
-			if (context.hasEndReached()){
-				break;
-			}
-			if (context.state==State.INITIAL){
-				context.state=State.NORMAL;
 			}
 		} while (true);
 		return getSuccessToken();
 	}
 
-	private boolean isWordStart(char c) {
-		return c == '$';
-	}
-
-	// see http://tldp.org/LDP/abs/html/string-manipulation.html
-	private boolean isWordPart(char c, ScanContext context) {
-		if (c=='\n'){
-			return false;
-		}
-		if (c == '{') {
-			if (context.state==State.NORMAL){
-				return false;
-			}
-			if (context.state==State.INITIAL){
-				context.state=State.CURLY_OPENED;
-			}
-			context.curlyBracesOpened++;
-			return true;
-		}
-		if (c=='}'){
-			context.curlyBracesClosed++;
-		}
-		if (c == '(') {
-			if (context.state==State.NORMAL){
-				return false;
-			}
-			if (context.state==State.INITIAL){
-				context.state=State.GROUP_OPENED;
-			}
-			context.groupOpened++;
-			return true;
-		}
-		if (c==')'){
-			context.groupClosed++;
-		}
-		if (context.state==State.GROUP_OPENED){
-			return true;
-		}
-		if (context.state==State.CURLY_OPENED){
-			return true;
-		}
-		/* curly braces/groups not opened! so we allow all except whitespaces */
+	private boolean isWordPart(char c) {
 		if (Character.isWhitespace(c)){
 			return false;
 		}
-		if (c=='\'' || c=='\"' || c=='`'){
-			/* e.g. on a $PID"-is interesting" */
-			
+		if (notValidCharacterSet.contains(c)){
 			return false;
 		}
-		if (context.state==State.NORMAL && c=='/' ){
-			/* e.g. on a $package/var/... */
-			return false;
-		}
-		
 		return true;
 	}
+
+	private boolean isWordStart(char c) {
+		return c == '%';
+	}
+
 }

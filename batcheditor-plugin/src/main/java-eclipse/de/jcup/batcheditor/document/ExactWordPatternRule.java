@@ -26,6 +26,16 @@ public class ExactWordPatternRule extends WordPatternRule{
 	StringBuilder traceSb;
 	boolean trace = false;
 	
+	private int allowedPrefix=-1;
+	private int allowedPostfix=-1;
+	
+	public void setAllowedPostfix(char allowedPostfix) {
+		this.allowedPostfix = allowedPostfix;
+	}
+	public void setAllowedPrefix(char allowedPrefix) {
+		this.allowedPrefix = allowedPrefix;
+	}
+	
 	public ExactWordPatternRule(IWordDetector detector, String exactWord, IToken token) {
 		this(detector,exactWord,token,true);
 	}
@@ -58,7 +68,7 @@ public class ExactWordPatternRule extends WordPatternRule{
 			scannerUnread(scanner, counter);
 			char charBefore =(char)scannerRead(scanner, counter);
 			scannerRead(scanner, counter);
-			wordHasPrefix = isPrefixCharacter(charBefore);
+			wordHasPrefix = isIllegalPrefixCharacter(charBefore);
 		}
 		if (wordHasPrefix){
 			scannerRead(scanner, counter);
@@ -84,8 +94,8 @@ public class ExactWordPatternRule extends WordPatternRule{
 		char charAfter = (char)read;
 		scannerUnread(scanner, counter);
 		
-		/* when not a whitespace and not end reached - do cleanup*/
-		if (! Character.isWhitespace(charAfter) && ICharacterScanner.EOF!=read){
+		/* when not allowedPostFix and not a whitespace and not end reached - do cleanup*/
+		if (charAfter!=allowedPostfix && ! Character.isWhitespace(charAfter) && ICharacterScanner.EOF!=read){
 			/* the word is more than the exact one - e.g. instead of 'test' 'testx' ... so not correct*/
 			return counter.cleanupAndReturn(scanner,false);
 		}
@@ -93,7 +103,10 @@ public class ExactWordPatternRule extends WordPatternRule{
 	}
 
 	
-	private boolean isPrefixCharacter(char charBefore) {
+	private boolean isIllegalPrefixCharacter(char charBefore) {
+		if (charBefore==allowedPrefix){
+			return false;
+		}
 		boolean isPrefix = ! Character.isWhitespace(charBefore);
 		return isPrefix;
 	}

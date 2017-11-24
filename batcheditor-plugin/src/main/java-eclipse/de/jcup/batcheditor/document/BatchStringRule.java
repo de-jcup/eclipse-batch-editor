@@ -22,7 +22,7 @@ import org.eclipse.jface.text.rules.Token;
 
 public class BatchStringRule extends PatternRule {
 
-	private static final boolean BREAKS_ON_EOL = false; // support multi line strings!
+	private static final boolean BREAKS_ON_EOL = true;// only single lines supported in batch
 	private static final boolean BREAKS_ON_EOF = true;
 	private static final boolean ESCAPE_CONTINUES_LINE = false;
 

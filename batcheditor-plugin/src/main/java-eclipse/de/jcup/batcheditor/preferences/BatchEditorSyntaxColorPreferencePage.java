@@ -70,6 +70,8 @@ public class BatchEditorSyntaxColorPreferencePage extends FieldEditorPreferenceP
 				changeColor(editorMap, COLOR_EXTERNAL_COMMAND, BatchEditorColorConstants.TASK_CYAN);
 				changeColor(editorMap, COLOR_KNOWN_VARIABLES, BatchEditorColorConstants.DARK_THEME_GRAY);
 				changeColor(editorMap, COLOR_PARAMETERS, BatchEditorColorConstants.BRIGHT_CYAN);
+				changeColor(editorMap, COLOR_ECHO_OUTPUT, BatchEditorColorConstants.DARK_THEME_ECHO_OUTPUT);
+				
 				
 			}
 

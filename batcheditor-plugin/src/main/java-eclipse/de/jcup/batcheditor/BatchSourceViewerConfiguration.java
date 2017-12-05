@@ -150,6 +150,8 @@ public class BatchSourceViewerConfiguration extends TextSourceViewerConfiguratio
 
 		addDefaultPresentation(reconciler);
 
+		addPresentation(reconciler, ECHO_OUTPUT.getId(), getPreferences().getColor(COLOR_ECHO_OUTPUT), SWT.ITALIC);
+		
 		addPresentation(reconciler, BATCH_KEYWORD.getId(), getPreferences().getColor(COLOR_BATCH_INTERNAL_KEYWORD),SWT.BOLD);
 
 		addPresentation(reconciler, DOUBLE_STRING.getId(), getPreferences().getColor(COLOR_GSTRING),SWT.NONE);

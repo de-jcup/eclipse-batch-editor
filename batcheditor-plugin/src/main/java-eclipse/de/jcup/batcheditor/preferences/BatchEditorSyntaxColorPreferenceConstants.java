@@ -26,6 +26,7 @@ public enum BatchEditorSyntaxColorPreferenceConstants implements PreferenceIdent
 	COLOR_EXTERNAL_COMMAND("colorCommands","External commands"),
 	COLOR_KNOWN_VARIABLES("colorKnownVariables","Variables"),
 	COLOR_PARAMETERS("colorParameters","Parameters"),
+	COLOR_ECHO_OUTPUT("colorEchoOutput","Echo output"),
 	
 	;
 

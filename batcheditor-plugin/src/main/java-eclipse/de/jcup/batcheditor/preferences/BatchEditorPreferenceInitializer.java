@@ -68,6 +68,8 @@ public class BatchEditorPreferenceInitializer extends AbstractPreferenceInitiali
 		preferences.setDefaultColor(COLOR_KNOWN_VARIABLES, DARK_GRAY);
 		preferences.setDefaultColor(COLOR_PARAMETERS, DARK_BLUE);
 		
+		preferences.setDefaultColor(COLOR_ECHO_OUTPUT, GRAY);
+		
 	}
 	
 	

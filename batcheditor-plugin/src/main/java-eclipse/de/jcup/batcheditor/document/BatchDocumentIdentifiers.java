@@ -36,6 +36,8 @@ public enum BatchDocumentIdentifiers implements BatchDocumentIdentifier {
 	VARIABLES,
 	
 	PARAMETER,
+	
+	ECHO_OUTPUT,
 	;
 
 

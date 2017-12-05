@@ -36,8 +36,12 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 	private OnlyLettersKeyWordDetector onlyLettersWordDetector = new OnlyLettersKeyWordDetector();
 //	private VariableDefKeyWordDetector variableDefKeyWordDetector = new VariableDefKeyWordDetector();
 
+	public int getOffset(){
+		return fOffset;
+	}
+	
 	public BatchDocumentPartitionScanner() {
-
+		IToken echoOutput = createToken(ECHO_OUTPUT);
 		IToken parameters = createToken(PARAMETER);
 		IToken comment = createToken(COMMENT);
 		IToken doubleString = createToken(DOUBLE_STRING);
@@ -49,6 +53,7 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 		IToken batchExternalCommands = createToken(BATCH_COMMAND);
 
 		List<IPredicateRule> rules = new ArrayList<>();
+		rules.add(new AfterEchoDocumentRule(echoOutput)); 
 		rules.add(new BatchVariableRule(variables));
 		rules.add(new SingleLineRule("rem", "", comment, (char) -1, true));
 		rules.add(new SingleLineRule("REM", "", comment, (char) -1, true));

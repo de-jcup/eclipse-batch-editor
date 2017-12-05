@@ -42,6 +42,7 @@ public class BatchScriptModelBuilder {
 					if (Character.isWhitespace(c)) {
 						addLabelDataWhenExisting(model, labelSb, context);
 						labelSb = null;
+						continue;
 					} else {
 						labelSb.append(c);
 					}

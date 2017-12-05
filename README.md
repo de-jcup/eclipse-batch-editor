@@ -1,4 +1,5 @@
 ![Logo](https://github.com/de-jcup/eclipse-batch-editor/blob/master/batcheditor-plugin/html/images/batch-editor-logo.png?raw=true)
+[![Build status:](https://travis-ci.org/de-jcup/eclipse-batch-editor.svg?branch=master)](https://travis-ci.org/de-jcup/eclipse-batch-editor)
 
 An eclipse editor for windows batch files
 

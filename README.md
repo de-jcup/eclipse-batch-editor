@@ -3,7 +3,7 @@
 [![Build status:](https://travis-ci.org/de-jcup/eclipse-batch-editor.svg?branch=master)](https://travis-ci.org/de-jcup/eclipse-batch-editor)
 
 ## In a nutshell
-An eclipse editor for windows batch files
+An eclipse editor for windows batch files (*.bat, *.cmd)
 
 For more details please refer to https://github.com/de-jcup/eclipse-batch-editor/wiki
 

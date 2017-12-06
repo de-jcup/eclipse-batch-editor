@@ -30,7 +30,7 @@
          point="org.eclipse.ui.editors">
       <editor
       		name="Batch Editor"
-            extensions="bat"
+            extensions="bat,cmd"
             icon="icons/batch-editor.png"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="de.jcup.batcheditor.BatchEditor"

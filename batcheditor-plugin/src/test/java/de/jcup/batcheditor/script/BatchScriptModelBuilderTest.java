@@ -20,33 +20,43 @@ public class BatchScriptModelBuilderTest {
 	}
 
 	@Test
-	public void colon_label_space__is_returned_as_label_pos_1_end_5(){
+	public void colon_space__is_not_returned_as_label() {
+		/* execute */
+		BatchScriptModel result = builderToTest.build(": ");
+
+		/* test */
+		assertTrue(result.getLabels().isEmpty());
+
+	}
+
+	@Test
+	public void colon_label_space__is_returned_as_label_pos_1_end_5() {
 		/* execute */
 		BatchScriptModel result = builderToTest.build(":label ");
 
 		/* test */
-		assertEquals(1,result.getLabels().size());
+		assertEquals(1, result.getLabels().size());
 		BatchLabel label = result.getLabels().iterator().next();
-		assertEquals("label",label.getName());
+		assertEquals("label", label.getName());
 		assertEquals(1, label.getPosition());
 		assertEquals(5, label.getEnd());
-		
+
 	}
-	
+
 	@Test
-	public void colon_label_is_returned_as_label_pos_1_end_5(){
+	public void colon_label_is_returned_as_label_pos_1_end_5() {
 		/* execute */
 		BatchScriptModel result = builderToTest.build(":label");
 
 		/* test */
-		assertEquals(1,result.getLabels().size());
+		assertEquals(1, result.getLabels().size());
 		BatchLabel label = result.getLabels().iterator().next();
-		assertEquals("label",label.getName());
+		assertEquals("label", label.getName());
 		assertEquals(1, label.getPosition());
 		assertEquals(5, label.getEnd());
-		
+
 	}
-	
+
 	@Test
 	public void bugfix_11_script_has_3_labels() throws Exception {
 		/* execute */

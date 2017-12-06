@@ -57,10 +57,15 @@ public class BatchScriptModelBuilder {
 
 	protected void addLabelDataWhenExisting(BatchScriptModel model, StringBuilder labelSb, BatchscriptContext context) {
 		if (labelSb != null) {
-			BatchLabel label = new BatchLabel(labelSb.toString());
-			label.pos = context.labelStart + 1;
-			label.end = context.pos - 1;
-			model.getLabels().add(label);
+			String labelName = labelSb.toString().trim();
+			if (! labelName.isEmpty()){
+
+				BatchLabel label = new BatchLabel(labelName);
+				label.pos = context.labelStart + 1;
+				label.end = context.pos - 1;
+				
+				model.getLabels().add(label);
+			}
 		}
 		context.pos++;
 		context.posAtLine = 0;

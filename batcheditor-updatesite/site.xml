@@ -2,4 +2,5 @@
 <site>
    <feature url="features/de.jcup.batcheditor_0.1.0.jar" id="de.jcup.batcheditor" version="0.1.0"/>
    <feature url="features/de.jcup.batcheditor_0.2.0.jar" id="de.jcup.batcheditor" version="0.2.0"/>
+   <feature url="features/de.jcup.batcheditor_1.0.0.jar" id="de.jcup.batcheditor" version="1.0.0"/>
 </site>

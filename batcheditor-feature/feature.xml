@@ -2,18 +2,22 @@
 <feature
       id="de.jcup.batcheditor"
       label="Batch Editor"
-      version="0.2.0"
+      version="1.0.0"
       provider-name="Albert Tregnaghi">
 
    <description url="https://marketplace.eclipse.org/content/batch-editor">
-      Batch Editor is a eclipse plugin to edit batch scripts (.sh)
+      Batch Editor is a eclipse plugin to edit batch scripts (.bat)
+
+You can find more information at
+https://marketplace.eclipse.org/content/batch-editor
+and
+https://github.com/de-jcup/eclipse-batch-editor
 
 It supports 
 - Syntax coloring which is customizeable and has additional defaults for dark theme
 - Bracket switching + highlighting
 - Block commenting (CTRL+7)
 - Auto bracket closing for []
-- Validation
 - Outline + Quickoutline
    </description>
 

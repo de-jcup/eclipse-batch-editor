@@ -38,8 +38,9 @@ public class EchoParserSupport {
 			context.nextChar(c);
 			pos++;
 		}
-		codePosSupport.moveToPos(pos-1); // do not add the terminating char, so e.g. | is not syntax highlighted 
-		
+		if (pos>=1){
+			codePosSupport.moveToPos(pos-1); // do not add the terminating char, so e.g. | is not syntax highlighted 
+		}
 	}
 	
 	static class EchoParserSupportContext{

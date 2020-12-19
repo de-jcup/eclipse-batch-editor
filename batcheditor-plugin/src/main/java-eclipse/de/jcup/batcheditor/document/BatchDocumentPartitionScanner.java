@@ -54,7 +54,10 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 
 		List<IPredicateRule> rules = new ArrayList<>();
 		rules.add(new AfterEchoDocumentRule(echoOutput)); 
+		
 		rules.add(new BatchVariableRule(variables));
+		rules.add(new BatchDelayedExpansionVariableRule(variables));
+		
 		rules.add(new SingleLineRule("rem", "", comment, (char) -1, true));
 		rules.add(new SingleLineRule("REM", "", comment, (char) -1, true));
 		rules.add(new SingleLineRule("::", "", comment, (char) -1, true));

@@ -97,8 +97,5 @@ task testReportAll(type: TestReport) {
     reportOn subprojects*.test
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.0'
-}
 
 

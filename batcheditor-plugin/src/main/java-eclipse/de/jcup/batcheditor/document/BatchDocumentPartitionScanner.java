@@ -51,6 +51,8 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 		IToken knownVariables = createToken(KNOWN_VARIABLES);
 		IToken variables = createToken(VARIABLES);
 		IToken batchExternalCommands = createToken(BATCH_COMMAND);
+		IToken numbers = createToken(NUMBERS);
+		IToken labels = createToken(LABELS);
 
 		List<IPredicateRule> rules = new ArrayList<>();
 		rules.add(new AfterEchoDocumentRule(echoOutput)); 
@@ -65,6 +67,8 @@ public class BatchDocumentPartitionScanner extends RuleBasedPartitionScanner {
 		rules.add(new BatchStringRule("\"", "\"", doubleString));
 
 		rules.add(new CommandParameterRule(parameters));
+		rules.add(new SimpleDigitsRule(numbers));
+		rules.add(new SimpleLabelRule(labels));
 
 		buildWordRules(rules, batchBuildIn, BatchBuildInKeywords.values());
 		buildWordRules(rules, batchExternalCommands, BatchExternalKeyWords.values());

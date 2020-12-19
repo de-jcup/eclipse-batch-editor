@@ -71,6 +71,8 @@ public class BatchEditorSyntaxColorPreferencePage extends FieldEditorPreferenceP
 				changeColor(editorMap, COLOR_KNOWN_VARIABLES, BatchEditorColorConstants.DARK_THEME_GRAY);
 				changeColor(editorMap, COLOR_PARAMETERS, BatchEditorColorConstants.BRIGHT_CYAN);
 				changeColor(editorMap, COLOR_ECHO_OUTPUT, BatchEditorColorConstants.DARK_THEME_ECHO_OUTPUT);
+				changeColor(editorMap, COLOR_NUMBERS, BatchEditorColorConstants.DARK_THEME_NUMBER_BLUE);
+				changeColor(editorMap, COLOR_LABELS, BatchEditorColorConstants.DAKK_THEME_LABEL_BLUE);
 				
 				
 			}

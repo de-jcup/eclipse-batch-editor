@@ -17,7 +17,6 @@
 
 import static org.junit.Assert.*;
 
-import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.IWordDetector;
 import org.eclipse.jface.text.rules.Token;
@@ -127,45 +126,6 @@ public class ExactWordPatternRuleTest {
 		rule.evaluate(scanner);
 		
 		assertEquals(0,scanner.column);
-		
-	}
-	
-	private class OneLineSimpleTestCharacterScanner implements ICharacterScanner{
-		private int column;
-		private String text;
-
-		public OneLineSimpleTestCharacterScanner(String text){
-			this.text=text;
-		}
-		
-
-		@Override
-		public char[][] getLegalLineDelimiters() {
-			char[][] chars = new char[1][];
-			chars[0]="\n".toCharArray();
-			return chars;
-		}
-
-		@Override
-		public int getColumn() {
-			return column;
-		}
-
-		@Override
-		public int read() {
-			if (column>=text.length()){
-				return EOF;
-			}
-			char c = text.substring(column, column+1).toCharArray()[0];
-			column++;
-			return c;
-		}
-
-		@Override
-		public void unread() {
-			column--;
-			
-		}
 		
 	}
 

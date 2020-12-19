@@ -38,6 +38,12 @@ public enum BatchDocumentIdentifiers implements BatchDocumentIdentifier {
 	PARAMETER,
 	
 	ECHO_OUTPUT,
+	
+	NUMBERS,
+	
+	LABELS,
+	
+	
 	;
 
 

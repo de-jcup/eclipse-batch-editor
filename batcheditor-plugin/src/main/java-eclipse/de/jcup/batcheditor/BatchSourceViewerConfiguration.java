@@ -164,6 +164,10 @@ public class BatchSourceViewerConfiguration extends TextSourceViewerConfiguratio
 		addPresentation(reconciler, VARIABLES.getId(), getPreferences().getColor(COLOR_KNOWN_VARIABLES),SWT.NONE);
 		addPresentation(reconciler, KNOWN_VARIABLES.getId(), getPreferences().getColor(COLOR_KNOWN_VARIABLES),SWT.NONE);
 		
+		addPresentation(reconciler, NUMBERS.getId(), getPreferences().getColor(COLOR_NUMBERS),SWT.NONE);
+		
+		addPresentation(reconciler, LABELS.getId(), getPreferences().getColor(COLOR_LABELS),SWT.NONE);
+		
 		return reconciler;
 	}
 

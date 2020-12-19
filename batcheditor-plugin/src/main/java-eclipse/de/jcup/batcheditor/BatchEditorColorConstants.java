@@ -75,12 +75,16 @@ public interface BatchEditorColorConstants {
 	public static final RGB MAGENTA = rgb(170, 0, 170);
 	public static final RGB CYANN = rgb(0, 170, 170);
 	public static final RGB GRAY = rgb(170, 170, 170);
+	public static final RGB MEDIUM_GRAY = rgb(138, 138, 138);
+	
 	public static final RGB DARK_THEME_GRAY = rgb(97, 97, 97);
 	public static final RGB DARK_GRAY = rgb(85, 85, 85);
 	public static final RGB BRIGHT_RED = rgb(255, 85, 85);
 	public static final RGB BRIGHT_GREEN = rgb(85, 255, 85);
 	public static final RGB YELLOW = rgb(255, 255, 85);
 	public static final RGB ORANGE = rgb(255, 165, 0); // http://www.rapidtables.com/web/color/orange-color.htm
+	public static final RGB ORANGE_DARK = rgb(206, 92, 0);
+	
 	public static final RGB BRIGHT_BLUE = rgb(85, 85, 255);
 	public static final RGB MEDIUM_CYAN = rgb(0, 128, 192);
 	public static final RGB DARK_BLUE = rgb(0, 64, 128);
@@ -97,6 +101,10 @@ public interface BatchEditorColorConstants {
 	 * A special dark cyan color for echo outputs on dark themes
 	 */
 	public static final RGB DARK_THEME_ECHO_OUTPUT = rgb(55,104,104);
+
+    public static final RGB STRONG_PURPLE = rgb(156, 88, 163);
+
+    public static final RGB DAKK_THEME_LABEL_BLUE = rgb(114, 159, 207);
 
 	public static RGB rgb(int r, int g, int b) {
 		return new RGB(r, g, b);

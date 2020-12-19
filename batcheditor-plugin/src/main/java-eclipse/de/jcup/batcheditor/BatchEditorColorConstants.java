@@ -91,10 +91,12 @@ public interface BatchEditorColorConstants {
 
 	public static final RGB TASK_CYAN = rgb(0,128,128);
 	
+	public static final RGB DARK_THEME_NUMBER_BLUE = rgb(64, 135, 191);
+	
 	/**
 	 * A special dark cyan color for echo outputs on dark themes
 	 */
-	public static final RGB DARK_THEME_ECHO_OUTPUT = rgb(49,98,98);
+	public static final RGB DARK_THEME_ECHO_OUTPUT = rgb(55,104,104);
 
 	public static RGB rgb(int r, int g, int b) {
 		return new RGB(r, g, b);

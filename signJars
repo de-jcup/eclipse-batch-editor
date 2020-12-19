@@ -9,7 +9,7 @@ if [ "$KEYSTORE_LOCATION" == "" ]; then
     echo "KEYSTORE_LOCATION not set!"
     exit 1
 fi
-cd basheditor-updatesite
+cd batcheditor-updatesite
 
 PLUGINDIR=./plugins/*
 FEATUREDIR=./features/*

@@ -54,6 +54,54 @@ public class SimpleDigitsRuleTest {
 	}
 	
 	@Test
+    public void equals_1234_is_found() {
+        /* prepare */
+        scanner = new OneLineSimpleTestCharacterScanner("=1234");
+        scanner.read();
+        SimpleDigitsRule rule = new SimpleDigitsRule(token);
+        
+        /* execute */
+        IToken tokenResult = rule.evaluate(scanner);
+        
+        /* test */
+        assertEquals(4,scanner.column);
+        assertEquals(token,tokenResult);
+        
+    }
+	
+	@Test
+    public void greater_1234_is_NOT_found_because_must_be_done_with_GTR() {
+        /* prepare */
+        scanner = new OneLineSimpleTestCharacterScanner(">1234");
+        scanner.read();
+        SimpleDigitsRule rule = new SimpleDigitsRule(token);
+        
+        /* execute */
+        IToken tokenResult = rule.evaluate(scanner);
+        
+        /* test */
+        assertEquals(1,scanner.column);
+        assertEquals(Token.UNDEFINED,tokenResult);
+        
+    }
+	
+	@Test
+    public void lower_1234_is_NOT_found_because_must_be_done_with_LSS() {
+        /* prepare */
+        scanner = new OneLineSimpleTestCharacterScanner("<1234");
+        scanner.read();
+        SimpleDigitsRule rule = new SimpleDigitsRule(token);
+        
+        /* execute */
+        IToken tokenResult = rule.evaluate(scanner);
+        
+        /* test */
+        assertEquals(1,scanner.column);
+        assertEquals(Token.UNDEFINED,tokenResult);
+        
+    }
+	
+	@Test
     public void number_1234_newline_is_found() {
         /* prepare */
         scanner = new OneLineSimpleTestCharacterScanner("1234\n  ");

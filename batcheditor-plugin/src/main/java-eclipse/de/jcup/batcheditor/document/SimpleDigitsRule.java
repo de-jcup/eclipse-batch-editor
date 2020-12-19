@@ -57,7 +57,7 @@ public class SimpleDigitsRule implements IPredicateRule {
             scanner.unread(); // af char before
             int before = scanner.read();
             char bc = (char) before;
-            if (! Character.isWhitespace(bc) && !Character.isDigit(bc)) {
+            if (! isAllowedCharacterBefore(bc)) {
                 /* not a digit so break */
                 return Token.UNDEFINED;
             }
@@ -89,6 +89,10 @@ public class SimpleDigitsRule implements IPredicateRule {
         } while (true);
         return  getSuccessToken();
 
+    }
+
+    private boolean isAllowedCharacterBefore(char bc) {
+        return Character.isWhitespace(bc) || Character.isDigit(bc) || bc=='=';
     }
 
 }

@@ -110,6 +110,17 @@ public enum BatchBuildInKeywords implements DocumentKeyWord {
 
 	VOL("Shows the label of the current volume."),
 
+	/** additional keywords for if operators - see https://ss64.com/nt/if.html */
+	EQU("Equal"),
+	NEQ("Not equal"),
+	LSS("Less than"),
+	LEQ("Less than or equal"),
+	GTR("Greater than"),
+	GEQ("Greater than"),
+	
+	/* file check */
+	EXIST("File exists - e.g. IF EXISTS filename.txt ...")
+	
 	;
 
 	private String text;

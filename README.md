@@ -1,6 +1,6 @@
 ![Logo](https://github.com/de-jcup/eclipse-batch-editor/blob/master/batcheditor-plugin/html/images/batch-editor-logo.png?raw=true)
 
-[![Build status:](https://travis-ci.org/de-jcup/eclipse-batch-editor.svg?branch=master)](https://travis-ci.org/de-jcup/eclipse-batch-editor)
+[![Java CI with Gradle](https://github.com/de-jcup/eclipse-batch-editor/actions/workflows/gradle.yml/badge.svg)](https://github.com/de-jcup/eclipse-batch-editor/actions/workflows/gradle.yml)
 
 ## In a nutshell
 An eclipse editor for windows batch files (*.bat, *.cmd)

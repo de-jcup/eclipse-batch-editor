@@ -15,29 +15,25 @@
  */
 package de.jcup.batcheditor.script;
 
-import java.util.ArrayList;
-import java.util.List;
+public class BatchVariable {
 
-public class BatchScriptModel {
+    int pos;
+    private String name;
+    int end;
 
-	private List<BatchLabel> labels;
-    private List<BatchVariable> variables;
-	
-	public BatchScriptModel() {
-		variables=new ArrayList<>();
-		labels=new ArrayList<>();
-	}
-	
-	public List<BatchVariable> getVariables(){
-	    return variables;
-	}
-	
-	public List<BatchLabel> getLabels() {
-		return labels;
-	}
+    public BatchVariable(String variableName) {
+        this.name = variableName;
+    }
 
-	public boolean hasErrors() {
-		return false;
-	}
+    public String getName() {
+        return name;
+    }
 
+    public int getPos() {
+        return pos;
+    }
+
+    public int getEnd() {
+        return end;
+    }
 }

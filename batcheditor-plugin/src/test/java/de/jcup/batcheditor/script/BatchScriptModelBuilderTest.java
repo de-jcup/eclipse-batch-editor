@@ -33,6 +33,135 @@ public class BatchScriptModelBuilderTest {
 	public void before() {
 		builderToTest = new BatchScriptModelBuilder();
 	}
+	/* --------------------------------------------- */
+	/* -------------------- Variables -------------- */
+	/* --------------------------------------------- */
+	@Test
+	public void text_empty_has_no_variables() {
+	    /* prepare */
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("");
+	    String text = sb.toString();
+	    
+	    /* execute */
+	    BatchScriptModel result = builderToTest.build(text);
+	    
+	    /* test */
+	    assertNotNull(result);
+	    assertTrue(result.getVariables().isEmpty());
+	    
+	}
+
+	@Test
+    public void text_set_variable1_equals_1_results_in_variable() {
+        /* prepare */
+        StringBuilder sb = new StringBuilder();
+        sb.append("set variable1=1");
+        
+        String text = sb.toString();
+
+        /* execute */
+        BatchScriptModel result = builderToTest.build(text);
+
+        /* test */
+        assertNotNull(result);
+        assertEquals(1,result.getVariables().size());
+        
+        BatchVariable variable = result.getVariables().iterator().next();
+        assertEquals("variable1",variable.getName());
+        assertEquals(0,variable.getPos());
+
+    }
+
+	@Test
+	public void text_set_java_home_with_second_equals_character() {
+	    /* prepare */
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("set JAVA_HOME=%JAVA_HOME:\"=%");
+	    
+	    String text = sb.toString();
+	    
+	    /* execute */
+	    BatchScriptModel result = builderToTest.build(text);
+	    
+	    /* test */
+	    assertNotNull(result);
+	    assertEquals(1,result.getVariables().size());
+	    
+	    BatchVariable variable = result.getVariables().iterator().next();
+	    assertEquals("JAVA_HOME",variable.getName());
+	    assertEquals(0,variable.getPos());
+	    
+	}
+	@Test
+    public void text_set_lash_p_variable1_equals_1_results_in_variable() {
+        /* prepare */
+        StringBuilder sb = new StringBuilder();
+        sb.append("set /p variable1=1");
+        
+        String text = sb.toString();
+
+        /* execute */
+        BatchScriptModel result = builderToTest.build(text);
+
+        /* test */
+        assertNotNull(result);
+        assertEquals(1,result.getVariables().size());
+        
+        BatchVariable variable = result.getVariables().iterator().next();
+        assertEquals("variable1",variable.getName());
+        assertEquals(0,variable.getPos());
+
+    }
+	
+	@Test
+    public void text_12345677890_newline_set_lash_p_variable1_equals_1_results_in_variable() {
+        /* prepare */
+        StringBuilder sb = new StringBuilder();
+        sb.append("1234567890\nset /p variable1=1");
+        
+        String text = sb.toString();
+
+        /* execute */
+        BatchScriptModel result = builderToTest.build(text);
+
+        /* test */
+        assertNotNull(result);
+        assertEquals(1,result.getVariables().size());
+        
+        BatchVariable variable = result.getVariables().iterator().next();
+        assertEquals("variable1",variable.getName());
+        assertEquals(11,variable.getPos());
+
+    }
+    
+	
+	@Test
+    public void text_set_slash_a_variable1_equals_1_results_in_variable() {
+        /* prepare */
+        StringBuilder sb = new StringBuilder();
+        sb.append("set /a variable1=1");
+        
+        String text = sb.toString();
+
+        /* execute */
+        BatchScriptModel result = builderToTest.build(text);
+
+        /* test */
+        assertNotNull(result);
+        assertEquals(1,result.getVariables().size());
+        
+        BatchVariable variable = result.getVariables().iterator().next();
+        assertEquals("variable1",variable.getName());
+        assertEquals(0,variable.getPos());
+
+    }
+	
+	
+	
+	/* --------------------------------------------- */
+	/* -------------------- Labels ----------------- */
+	/* --------------------------------------------- */
 
 	@Test
 	public void colon_space__is_not_returned_as_label() {

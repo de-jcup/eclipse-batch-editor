@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 
 import de.jcup.batcheditor.script.BatchLabel;
 import de.jcup.batcheditor.script.BatchScriptModel;
+import de.jcup.batcheditor.script.BatchVariable;
 
 public class BatchEditorTreeContentProvider implements ITreeContentProvider {
 
@@ -65,6 +66,16 @@ public class BatchEditorTreeContentProvider implements ITreeContentProvider {
 
 	private Item[] createItems(BatchScriptModel model) {
 		List<Item> list = new ArrayList<>();
+		for (BatchVariable variable : model.getVariables()) {
+            Item item = new Item();
+            item.name = variable.getName();
+            item.type = ItemType.VARIABLE;
+            item.offset = variable.getPos();
+            item.length = variable.getEnd()-variable.getPos();
+            item.endOffset=variable.getEnd();
+            list.add(item);
+        }
+		
 		for (BatchLabel labelion : model.getLabels()) {
 			Item item = new Item();
 			item.name = labelion.getName();

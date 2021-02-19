@@ -34,6 +34,7 @@ import de.jcup.batcheditor.outline.ItemType;
 public class BatchEditorOutlineLabelProvider extends BaseLabelProvider implements IStyledLabelProvider, IColorProvider {
 
 	private static final String ICON_FUNCTION = "public_co.png";
+	private static final String ICON_VARIABLE = "field_public_obj.png";
 	private static final String ICON_ERROR ="error_tsk.png";
 	private static final String ICON_INFO ="info_tsk.png";
 
@@ -73,6 +74,8 @@ public class BatchEditorOutlineLabelProvider extends BaseLabelProvider implement
 			switch (type) {
 			case LABEL:
 				return getOutlineImage(ICON_FUNCTION);
+			case VARIABLE:
+			    return getOutlineImage(ICON_VARIABLE);
 			case META_ERROR:
 				return getOutlineImage(ICON_ERROR);
 			case META_INFO:

@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/de.jcup.batcheditor_0.1.0.jar" id="de.jcup.batcheditor" version="0.1.0"/>
-   <feature url="features/de.jcup.batcheditor_0.2.0.jar" id="de.jcup.batcheditor" version="0.2.0"/>
-   <feature url="features/de.jcup.batcheditor_1.0.0.jar" id="de.jcup.batcheditor" version="1.0.0"/>
-   <feature url="features/de.jcup.batcheditor_1.0.1.jar" id="de.jcup.batcheditor" version="1.0.1"/>
-   <feature url="features/de.jcup.batcheditor_1.1.0.jar" id="de.jcup.batcheditor" version="1.1.0">
-      <category name="de.jcup.batcheditor.category.stable"/>
-   </feature>
-   <feature url="features/de.jcup.batcheditor_1.1.1.jar" id="de.jcup.batcheditor" version="1.1.1">
+   <feature url="features/de.jcup.batcheditor_1.2.0.jar" id="de.jcup.batcheditor" version="1.2.0">
       <category name="de.jcup.batcheditor.category.stable"/>
    </feature>
    <category-def name="de.jcup.batcheditor.category.stable" label="Stable">

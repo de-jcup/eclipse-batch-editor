@@ -2,7 +2,7 @@
 <feature
       id="de.jcup.batcheditor"
       label="Batch Editor"
-      version="1.1.1"
+      version="1.2.0"
       provider-name="Albert Tregnaghi">
 
    <description url="https://marketplace.eclipse.org/content/batch-editor">
